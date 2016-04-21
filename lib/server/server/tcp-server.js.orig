@@ -25,6 +25,14 @@ TcpServer.prototype.start = function(port) {
     var message = "";
     socket.on('data', function(data) {
       try {
+<<<<<<< HEAD
+        var msg = tcpServer.parser.parse(data.toString().substring(1, data.toString().length - 2));
+        var ack = tcpServer.createAckMessage(msg);
+        socket.write(VT + ack + CR + FS + CR);
+        tcpServer.emit('msg', msg)
+      }
+      catch (err) {
+=======
         message += data.toString();
         if (message.substring(message.length - 2, message.length) == FS + CR) {
           var hl7 = tcpServer.parser.parse(message.substring(1, message.length - 2));
@@ -34,6 +42,7 @@ TcpServer.prototype.start = function(port) {
           message = "";
         }
       } catch (err) {
+>>>>>>> 17b8fc39e69226656e14ed80c74b8101f8a07b74
         throw err;
       }
     });
