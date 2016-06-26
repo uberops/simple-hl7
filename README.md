@@ -1,7 +1,11 @@
 #simple-hl7
+![Image Build Status](https://travis-ci.org/hitgeek/simple-hl7.svg?branch=master)
+
+*If anyone is using simple-hl7 for intersting projects I'd love to hear about it. Go to [rupp.io/contact](http://rupp.io/contact) and tell me what you are working on.*
+
 A simple library for working with version 2 HL7 messages. It includes a parser, an API for creating messages, and server components for sending and receiving messages.
 
-check out tutorial video at https://www.youtube.com/watch?v=PyX7RHjpcg4
+[check out tutorial video](https://www.youtube.com/watch?v=PyX7RHjpcg4)
 
 ```js
 var hl7    = require('simple-hl7');
@@ -127,8 +131,19 @@ This library has three goals. Create any HL7 message type with "visual" construc
 ## Examples
 Look at examples folder.
 
+## EOL / Carriage returns
+The HL7 Messaging Standard specifies that end of lines / segment separators must be carriage returns rather than linebreaks. This affects output display on command line. Two workarounds:
+* Piping the output to `tr`:
+```sh
+node file.js | tr '\r' '\n'
+```
+* Overriding the default segment separator in the code:
+```js
+msg.header.delimiters.segmentSeperator = '\n';
+```
+
 ## People
 Author: Bob Rupp bob@rupp.io
 
 ##License
-GNU
+GPL version 2
